@@ -9,16 +9,16 @@
 
         <variable
             name="viewModel"
-            type="com.example.test_task_paletch_inc.presentation.screens.categories.CategoriesViewModel" />
+            type="com.example.test_task_paletch_inc.presentation.screens.books.BooksViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.test_task_paletch_inc.presentation.screens.categories.CategoriesFragment">
+        tools:context="com.example.test_task_paletch_inc.presentation.screens.books.BooksFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -27,18 +27,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="1"
-            tools:listitem="@layout/recycler_view_category_item" />
+            tools:listitem="@layout/recycler_view_book_item" />
 
         <ImageView
-            android:id="@+id/loadingImageView"
+            android:id="@+id/loadingImageView2"
             android:layout_width="@dimen/load_image_size"
             android:layout_height="@dimen/load_image_size"
             app:apiStatus="@{viewModel.status}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyclerView2"
             app:srcCompat="@drawable/loading_img" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_data"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView2"
+            app:layout_constraintStart_toStartOf="@+id/recyclerView2"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

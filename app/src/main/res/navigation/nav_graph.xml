@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/categoriesFragment">
+
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.example.test_task_paletch_inc.presentation.screens.categories.CategoriesFragment"
+        android:label="CategoriesFragment"
+        tools:layout="@layout/fragment_categories">
+        <action
+            android:id="@+id/action_categoriesFragment_to_booksFragment"
+            app:destination="@id/booksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/booksFragment"
+        android:name="com.example.test_task_paletch_inc.presentation.screens.books.BooksFragment"
+        android:label="BooksFragment"
+        tools:layout="@layout/fragment_books">
+        <argument
+            android:name="categories"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_booksFragment_to_webFragment"
+            app:destination="@id/webFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="com.example.test_task_paletch_inc.presentation.screens.webScreen.WebFragment"
+        android:label="fragment_web"
+        tools:layout="@layout/fragment_web">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
+</navigation>

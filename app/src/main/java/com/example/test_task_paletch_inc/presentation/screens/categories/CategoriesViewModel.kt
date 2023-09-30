@@ -6,6 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.test_task_paletch_inc.constants.Constants
+import com.example.test_task_paletch_inc.databinding.FragmentCategoriesBinding
+import com.example.test_task_paletch_inc.domain.models.Category
+import com.example.test_task_paletch_inc.network.CategoryInfo
 import com.example.test_task_paletch_inc.network.ListCategory
 import com.example.test_task_paletch_inc.network.NYTimesApi
 import com.example.test_task_paletch_inc.network.NYTimesApiStatus
@@ -18,6 +21,9 @@ class CategoriesViewModel : ViewModel() {
     private val _data = MutableLiveData<ListCategory>()
     val data: LiveData<ListCategory> = _data
 
+    private val _categoriesData = MutableLiveData<List<Category>>()
+    val categoriesData: LiveData<List<Category>> = _categoriesData
+
     init {
         getCategories()
     }
@@ -27,11 +33,34 @@ class CategoriesViewModel : ViewModel() {
             _status.value = NYTimesApiStatus.LOADING
             try {
                 _data.value = NYTimesApi.retrofitService.getCategories(Constants.API_KEY)
-                Log.d("MyTag", data.value?.numResults.toString())
                 _status.value = NYTimesApiStatus.DONE
+                getCategoriesList()
             } catch (e: Exception) {
                 _status.value = NYTimesApiStatus.ERROR
             }
         }
+    }
+
+    private fun getCategoriesList() {
+        _categoriesData.value = extractCategoryData(data.value!!.result)
+    }
+
+
+    private fun extractCategoryData(data: List<CategoryInfo>): MutableList<Category> {
+        val tempMutableList: MutableList<Category> = mutableListOf()
+        if (status.value == NYTimesApiStatus.DONE) {
+            for (categoryInfo in data)
+                tempMutableList.add(
+                    Category(
+                        categoryInfo.listName,
+                        categoryInfo.newestPublishedDate
+                    )
+                )
+        }
+        return tempMutableList
+    }
+
+    fun getCategoryNameById(id: Int): String {
+        return categoriesData.value!![id].name
     }
 }
