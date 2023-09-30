@@ -38,6 +38,7 @@ class CategoriesViewModel : ViewModel() {
                 _data.value = NYTimesApi.retrofitService.getCategories(Constants.API_KEY)
                 _status.value = NYTimesApiStatus.DONE
                 getCategoriesList()
+                Log.d("MyTag", "Eto pizdez")
                 insertCategoryToDataBase()
             } catch (e: Exception) {
                 _status.value = NYTimesApiStatus.ERROR
@@ -47,10 +48,11 @@ class CategoriesViewModel : ViewModel() {
 
     private fun insertCategoryToDataBase() {
         val db = AppDatabase.getDatabase()
+        val data = categoriesData.value!!
         if (db != null) {
             val categoriesDao: CategoriesDao = db.categoryDao()
             viewModelScope.launch {
-                for ((iterator, category) in categoriesData.value!!.withIndex()) {
+                for ((iterator, category) in data.withIndex()) {
                     categoriesDao.insert(
                         Categories(
                             iterator,

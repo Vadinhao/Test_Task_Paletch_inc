@@ -27,6 +27,8 @@ class BooksViewModel : ViewModel() {
     private val _booksData = MutableLiveData<List<Book>>()
     val booksData: LiveData<List<Book>> = _booksData
 
+    private lateinit var category : String
+
     init {
         getCategoriesWithBooks()
     }
@@ -38,6 +40,7 @@ class BooksViewModel : ViewModel() {
                 _data.value = NYTimesApi.retrofitService.getBooks(Constants.API_KEY)
                 _status.value = NYTimesApiStatus.DONE
                 insertBooksToDataBase()
+                getBookFromDB()
             } catch (e: Exception) {
                 _status.value = NYTimesApiStatus.ERROR
             }
@@ -69,7 +72,31 @@ class BooksViewModel : ViewModel() {
         Log.d("MyTag", "insertedBooks!")
     }
 
+    private fun getBookFromDB(){
+        val db = AppDatabase.getDatabase()
+        if (db != null) {
+            val booksDao: BooksDao = db.booksDao()
+            viewModelScope.launch {
+                val listBooks = booksDao.getBooksForCategory(category)
+                for (book in listBooks) {
+                    Log.d("MyTag",
+                        book.name + " " +
+                        book.category + " " +
+                        book.author + " " +
+                        book.rank + " " +
+                        book.description + " " +
+                        book.imageUrl + " " +
+                        book.link + " " +
+                        book.publisher + " "
+                        )
+                }
+            }
+        }
+        Log.d("MyTag", "getBooks!")
+    }
+
     fun getBooksList(category: String): LiveData<List<Book>> {
+        this.category = category
         val tempMutableList: MutableList<Book> = mutableListOf()
         if (status.value == NYTimesApiStatus.DONE && data.isInitialized) {
             for (listElement in data.value!!.results.lists) {
