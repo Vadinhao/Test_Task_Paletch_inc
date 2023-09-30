@@ -1,10 +1,8 @@
 package com.example.test_task_paletch_inc.presentation.screens.categories.recycler
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_task_paletch_inc.R
 import com.example.test_task_paletch_inc.databinding.RecyclerViewCategoryItemBinding

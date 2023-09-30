@@ -1,4 +1,4 @@
-package com.example.test_task_paletch_inc.network
+package com.example.test_task_paletch_inc.data.network
 
 import com.example.test_task_paletch_inc.constants.Constants
 import com.squareup.moshi.Moshi

@@ -6,12 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.test_task_paletch_inc.constants.Constants
-import com.example.test_task_paletch_inc.databinding.FragmentCategoriesBinding
+import com.example.test_task_paletch_inc.data.dao.CategoriesDao
+import com.example.test_task_paletch_inc.data.dao.entity.Categories
+import com.example.test_task_paletch_inc.data.database.AppDatabase
 import com.example.test_task_paletch_inc.domain.models.Category
-import com.example.test_task_paletch_inc.network.CategoryInfo
-import com.example.test_task_paletch_inc.network.ListCategory
-import com.example.test_task_paletch_inc.network.NYTimesApi
-import com.example.test_task_paletch_inc.network.NYTimesApiStatus
+import com.example.test_task_paletch_inc.data.network.CategoryInfo
+import com.example.test_task_paletch_inc.data.network.ListCategory
+import com.example.test_task_paletch_inc.data.network.NYTimesApi
+import com.example.test_task_paletch_inc.data.network.NYTimesApiStatus
+//import com.example.test_task_paletch_inc.data.repository.CategoryRepository
 import kotlinx.coroutines.launch
 
 class CategoriesViewModel : ViewModel() {
@@ -35,16 +38,35 @@ class CategoriesViewModel : ViewModel() {
                 _data.value = NYTimesApi.retrofitService.getCategories(Constants.API_KEY)
                 _status.value = NYTimesApiStatus.DONE
                 getCategoriesList()
+                insertCategoryToDataBase()
             } catch (e: Exception) {
                 _status.value = NYTimesApiStatus.ERROR
             }
         }
     }
 
+    private fun insertCategoryToDataBase() {
+        val db = AppDatabase.getDatabase()
+        if (db != null) {
+            val categoriesDao: CategoriesDao = db.categoryDao()
+            viewModelScope.launch {
+                for ((iterator, category) in categoriesData.value!!.withIndex()) {
+                    categoriesDao.insert(
+                        Categories(
+                            iterator,
+                            category.name,
+                            category.publishedDate
+                        )
+                    )
+                }
+            }
+        }
+        Log.d("MyTag", "insertedCategories!")
+    }
+
     private fun getCategoriesList() {
         _categoriesData.value = extractCategoryData(data.value!!.result)
     }
-
 
     private fun extractCategoryData(data: List<CategoryInfo>): MutableList<Category> {
         val tempMutableList: MutableList<Category> = mutableListOf()

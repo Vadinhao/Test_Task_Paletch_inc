@@ -40,6 +40,10 @@ android {
         enable = true
     }
 
+    kapt {
+        generateStubs = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -60,6 +64,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.room:room-common:2.5.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -85,4 +90,13 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.3")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    // Room
+    implementation("androidx.room:room-ktx:2.5.2")
+    implementation("androidx.room:room-runtime:2.5.2")
+    implementation("androidx.room:room-compiler:2.5.2")
+    //Koin
+    //implementation("io.insert-koin:koin-android:3.1.2")
+    //Dagger
+    //implementation ("com.google.dagger:dagger:2.48")
+    //implementation ("com.google.dagger:dagger-compiler:2.48")
 }

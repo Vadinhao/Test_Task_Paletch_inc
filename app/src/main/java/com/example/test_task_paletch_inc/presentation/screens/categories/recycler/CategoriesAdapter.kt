@@ -1,9 +1,7 @@
 package com.example.test_task_paletch_inc.presentation.screens.categories.recycler
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_task_paletch_inc.constants.Constants
 import com.example.test_task_paletch_inc.domain.models.Category

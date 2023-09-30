@@ -1,17 +1,20 @@
 package com.example.test_task_paletch_inc.presentation.screens.books
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.test_task_paletch_inc.constants.Constants
+import com.example.test_task_paletch_inc.data.dao.BooksDao
+import com.example.test_task_paletch_inc.data.dao.entity.Books
+import com.example.test_task_paletch_inc.data.database.AppDatabase
 import com.example.test_task_paletch_inc.domain.models.Book
-import com.example.test_task_paletch_inc.network.BookList
-import com.example.test_task_paletch_inc.network.ListCategoryResult
-import com.example.test_task_paletch_inc.network.ListCategoryWithBooks
-import com.example.test_task_paletch_inc.network.NYTimesApi
-import com.example.test_task_paletch_inc.network.NYTimesApiStatus
+import com.example.test_task_paletch_inc.data.network.ListCategoryWithBooks
+import com.example.test_task_paletch_inc.data.network.NYTimesApi
+import com.example.test_task_paletch_inc.data.network.NYTimesApiStatus
+//import com.example.test_task_paletch_inc.data.repository.BookRepository
 import kotlinx.coroutines.launch
 
 class BooksViewModel : ViewModel() {
@@ -34,10 +37,36 @@ class BooksViewModel : ViewModel() {
             try {
                 _data.value = NYTimesApi.retrofitService.getBooks(Constants.API_KEY)
                 _status.value = NYTimesApiStatus.DONE
+                insertBooksToDataBase()
             } catch (e: Exception) {
                 _status.value = NYTimesApiStatus.ERROR
             }
         }
+    }
+
+    private fun insertBooksToDataBase() {
+        val db = AppDatabase.getDatabase()
+        if (db != null) {
+            val booksDao: BooksDao = db.booksDao()
+            viewModelScope.launch {
+                for ((iterator, book) in booksData.value!!.withIndex()) {
+                    booksDao.insert(
+                        Books(
+                            iterator,
+                            book.name,
+                            book.category,
+                            book.description,
+                            book.author,
+                            book.publisher,
+                            book.imageUrl,
+                            book.rank,
+                            book.linkToBuy
+                        )
+                    )
+                }
+            }
+        }
+        Log.d("MyTag", "insertedBooks!")
     }
 
     fun getBooksList(category: String): LiveData<List<Book>> {
@@ -49,6 +78,7 @@ class BooksViewModel : ViewModel() {
                         tempMutableList.add(
                             Book(
                                 book.title,
+                                category,
                                 book.description,
                                 book.author,
                                 book.publisher,

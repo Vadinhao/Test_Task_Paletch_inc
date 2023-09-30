@@ -7,8 +7,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.test_task_paletch_inc.R
-import com.example.test_task_paletch_inc.network.NYTimesApiStatus
-import com.example.test_task_paletch_inc.network.NYTimesApiStatus.*
+import com.example.test_task_paletch_inc.data.network.NYTimesApiStatus
+import com.example.test_task_paletch_inc.data.network.NYTimesApiStatus.*
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?){

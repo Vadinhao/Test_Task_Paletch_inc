@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import com.example.test_task_paletch_inc.R
 import com.example.test_task_paletch_inc.databinding.FragmentBooksBinding
 import com.example.test_task_paletch_inc.databinding.FragmentCategoriesBinding
-import com.example.test_task_paletch_inc.network.NYTimesApiStatus
+import com.example.test_task_paletch_inc.data.network.NYTimesApiStatus
 import com.example.test_task_paletch_inc.presentation.screens.books.recycler.BooksAdapter
 
 class BooksFragment : Fragment() {
