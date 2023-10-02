@@ -69,6 +69,10 @@ class CategoriesFragment : Fragment() {
     private fun setUpObserver() {
         sharedViewModel.dataCategories.observe(viewLifecycleOwner, Observer {
             binding.recyclerView.adapter?.notifyDataSetChanged()
+            binding.noDataTextView.visibility = View.GONE
+            if(sharedViewModel.dataCategories.value!!.isEmpty()){
+                binding.noDataTextView.visibility = View.VISIBLE
+            }
         })
     }
 
