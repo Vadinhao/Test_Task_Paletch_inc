@@ -1,19 +1,12 @@
 package com.example.test_task_paletch_inc.presentation.root
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.test_task_paletch_inc.R
-import com.example.test_task_paletch_inc.data.database.AppDatabase
 import com.example.test_task_paletch_inc.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-//import org.koin.android.ext.koin.androidContext
-//import org.koin.core.context.GlobalContext.startKoin
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
 
+        //(applicationContext as AppTestTaskPaletchInc).getComponent().inject(this)
+        //AppTestTaskPaletchInc.appComponent.inject(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {

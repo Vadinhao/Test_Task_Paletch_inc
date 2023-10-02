@@ -1,25 +1,19 @@
 package com.example.test_task_paletch_inc.di
 
-//import com.example.test_task_paletch_inc.data.dao.BooksDao
-//import com.example.test_task_paletch_inc.data.dao.CategoriesDao
-//import com.example.test_task_paletch_inc.data.repository.BookRepository
-//import com.example.test_task_paletch_inc.data.repository.CategoryRepository
-//import dagger.Module
-//import dagger.Provides
+import com.example.test_task_paletch_inc.data.repository.Book.BookRepository
+import com.example.test_task_paletch_inc.data.repository.Book.BookRepositoryImpl
+import com.example.test_task_paletch_inc.data.repository.Category.CategoryRepository
+import com.example.test_task_paletch_inc.data.repository.Category.CategoryRepositoryImpl
+import dagger.Binds
+import dagger.Module
 
-//@Module
-/*
-class RepositoryModule {
+@Module
+interface RepositoryModule {
 
-    @Provides
-    fun provideBookRepository(booksDao: BooksDao): BookRepository {
-        return BookRepository(booksDao)
-    }
+    @Binds
+    fun provideBookRepository(bookRepositoryImpl: BookRepositoryImpl): BookRepository
 
-    @Provides
-    fun provideCategoryRepository(categoriesDao: CategoriesDao): CategoryRepository {
-        return CategoryRepository(categoriesDao)
-    }
+    @Binds
+    fun provideCategoryRepository(categoryRepositoryImpl: CategoryRepositoryImpl): CategoryRepository
 
 }
-*/

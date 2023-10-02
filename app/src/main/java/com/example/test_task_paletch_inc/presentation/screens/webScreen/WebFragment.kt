@@ -2,12 +2,12 @@ package com.example.test_task_paletch_inc.presentation.screens.webScreen
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.test_task_paletch_inc.R
 import com.example.test_task_paletch_inc.databinding.FragmentWebBinding
 

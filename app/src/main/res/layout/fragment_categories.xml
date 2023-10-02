@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.test_task_paletch_inc.presentation.screens.categories.CategoriesViewModel" />
+            type="com.example.test_task_paletch_inc.presentation.screens.SharedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +33,7 @@
             android:id="@+id/loadingImageView"
             android:layout_width="@dimen/load_image_size"
             android:layout_height="@dimen/load_image_size"
-            app:apiStatus="@{viewModel.status}"
+            app:apiStatus="@{viewModel.statusForCategory}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

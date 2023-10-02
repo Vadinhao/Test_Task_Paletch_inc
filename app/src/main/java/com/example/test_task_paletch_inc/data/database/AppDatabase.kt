@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.test_task_paletch_inc.data.dao.BooksDao
-import com.example.test_task_paletch_inc.data.dao.CategoriesDao
-import com.example.test_task_paletch_inc.data.dao.entity.Books
-import com.example.test_task_paletch_inc.data.dao.entity.Categories
+import com.example.test_task_paletch_inc.data.database.dao.BooksDao
+import com.example.test_task_paletch_inc.data.database.dao.CategoriesDao
+import com.example.test_task_paletch_inc.data.database.entity.DbBooks
+import com.example.test_task_paletch_inc.data.database.entity.DbCategories
 
-@Database(entities = [Categories::class, Books::class], version = 1, exportSchema = false)
+@Database(entities = [DbCategories::class, DbBooks::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun categoryDao(): CategoriesDao
@@ -32,7 +32,7 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        fun getDatabase(): AppDatabase?{
+        fun getDatabase(): AppDatabase? {
             return INSTANCE
         }
     }

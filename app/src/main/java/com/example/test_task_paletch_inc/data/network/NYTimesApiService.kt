@@ -1,6 +1,8 @@
 package com.example.test_task_paletch_inc.data.network
 
 import com.example.test_task_paletch_inc.constants.Constants
+import com.example.test_task_paletch_inc.data.network.entity.ListCategory
+import com.example.test_task_paletch_inc.data.network.entity.ListCategoryWithBooks
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit

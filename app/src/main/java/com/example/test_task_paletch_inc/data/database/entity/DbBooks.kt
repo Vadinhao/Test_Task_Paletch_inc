@@ -1,4 +1,4 @@
-package com.example.test_task_paletch_inc.data.dao.entity
+package com.example.test_task_paletch_inc.data.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "books")
-data class Books(
+data class DbBooks(
     @PrimaryKey val id: Int,
     @NotNull @ColumnInfo(name = "name") val name: String,
     @NotNull @ColumnInfo(name = "category") val category: String,

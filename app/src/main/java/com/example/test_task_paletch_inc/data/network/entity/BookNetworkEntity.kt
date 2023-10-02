@@ -1,4 +1,4 @@
-package com.example.test_task_paletch_inc.data.network
+package com.example.test_task_paletch_inc.data.network.entity
 
 import com.squareup.moshi.Json
 

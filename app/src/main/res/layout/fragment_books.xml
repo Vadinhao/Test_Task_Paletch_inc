@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.test_task_paletch_inc.presentation.screens.books.BooksViewModel" />
+            type="com.example.test_task_paletch_inc.presentation.screens.SharedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,17 +28,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="1"
             tools:listitem="@layout/recycler_view_book_item" />
-
-        <ImageView
-            android:id="@+id/loadingImageView2"
-            android:layout_width="@dimen/load_image_size"
-            android:layout_height="@dimen/load_image_size"
-            app:apiStatus="@{viewModel.status}"
-            app:layout_constraintBottom_toBottomOf="@+id/recyclerView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/recyclerView2"
-            app:srcCompat="@drawable/loading_img" />
 
         <TextView
             android:id="@+id/textView"

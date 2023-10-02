@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.test_task_paletch_inc.R
 import com.example.test_task_paletch_inc.data.network.NYTimesApiStatus
@@ -37,6 +36,6 @@ fun bindStatus(statusImageView: ImageView,
             statusImageView.visibility = View.GONE
         }
 
-        null -> TODO()
+        null -> { }
     }
 }

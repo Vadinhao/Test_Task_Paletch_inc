@@ -41,9 +41,11 @@ android {
         enable = true
     }
 
+    /*
     kapt {
         generateStubs = true
     }
+    */
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -94,9 +96,12 @@ dependencies {
     implementation("androidx.room:room-ktx:2.5.2")
     implementation("androidx.room:room-runtime:2.5.2")
     ksp("androidx.room:room-compiler:2.5.2")
-    //Koin
-    //implementation("io.insert-koin:koin-android:3.1.2")
     //Dagger
-    //implementation ("com.google.dagger:dagger:2.48")
-    //implementation ("com.google.dagger:dagger-compiler:2.48")
+    //implementation("com.google.dagger:dagger:2.48")
+    //kapt("com.google.dagger:dagger-compiler:2.48")
+    //kapt("com.google.dagger:dagger-android-processor:2.48")
+    api("com.google.dagger:dagger:2.48")
+    kapt("com.google.dagger:dagger-compiler:2.48")
+    kapt("com.google.dagger:dagger-android-processor:2.48")
+    implementation("javax.inject:javax.inject:1")
 }
