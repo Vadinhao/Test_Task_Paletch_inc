@@ -1,5 +1,6 @@
 package com.example.test_task_paletch_inc.presentation.screens.books
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,7 @@ class BooksFragment : Fragment() {
         arguments?.let {
             selectedCategory = it.getString(CATEGORIES).toString()
         }
+        sharedViewModel.getBooksListByCategory(selectedCategory)
     }
 
     override fun onCreateView(
@@ -63,31 +65,33 @@ class BooksFragment : Fragment() {
     }
 
     private fun setUpAdapter() {
-        binding.recyclerView2.adapter = BooksAdapter(sharedViewModel.dataBooks) {
-            val action =
-                BooksFragmentDirections.actionBooksFragmentToWebFragment(
-                    sharedViewModel.getLinkById(
-                        it
+        binding.recyclerView2.adapter =
+            BooksAdapter(sharedViewModel.dataBookByCategory, requireContext()) {
+                val action =
+                    BooksFragmentDirections.actionBooksFragmentToWebFragment(
+                        sharedViewModel.getLinkById(
+                            it
+                        )
                     )
-                )
-            view?.findNavController()?.navigate(action)
-        }
+                view?.findNavController()?.navigate(action)
+            }
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setUpObserver() {
-        /*
-        sharedViewModel.dataBooks.observe(viewLifecycleOwner, Observer {
+
+        sharedViewModel.dataBookByCategory.observe(viewLifecycleOwner, Observer {
             binding.recyclerView2.adapter?.notifyDataSetChanged()
             if (it.isEmpty())
                 binding.textView.visibility = View.VISIBLE
         })
-        */
         sharedViewModel.statusForBook.observe(viewLifecycleOwner, Observer {
             if (it == NYTimesApiStatus.DONE) {
                 sharedViewModel.getBooksListByCategory(selectedCategory)
             }
         })
+
     }
 
 }

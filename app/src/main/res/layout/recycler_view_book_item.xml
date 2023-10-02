@@ -21,11 +21,14 @@
             android:layout_width="@dimen/book_image_size"
             android:layout_height="@dimen/book_image_size"
             android:layout_marginStart="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/image_border"
             android:scaleType="fitXY"
             app:imageUrl="@{book.imageUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+            app:layout_constraintVertical_bias="0.0"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
@@ -33,63 +36,74 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
-            android:text="@{book.name}"
+            android:textSize="@dimen/text_book_name_size"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/book_name" />
 
         <TextView
             android:id="@+id/rankTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_16"
-            android:text="@{book.rank}"
             app:layout_constraintBottom_toBottomOf="@+id/nameTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nameTextView" />
+            app:layout_constraintTop_toTopOf="@+id/nameTextView"
+            tools:text="@string/rank" />
 
         <TextView
             android:id="@+id/authorTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8"
-            android:text="@{book.author}"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-        <TextView
-            android:id="@+id/publisherTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8"
             android:layout_marginEnd="@dimen/margin_16"
-            android:text="@{book.publisher}"
-            app:layout_constraintBottom_toBottomOf="@+id/authorTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/authorTextView"
-            app:layout_constraintTop_toTopOf="@+id/authorTextView" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:text="@string/author" />
+
+        <TextView
+            android:id="@+id/publisherTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/authorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/authorTextView"
+            tools:text="@string/publisher" />
 
         <TextView
             android:id="@+id/descriptionTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{book.description}"
-            app:layout_constraintBottom_toTopOf="@+id/linkTextView"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_16"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/authorTextView"
-            app:layout_constraintTop_toBottomOf="@+id/authorTextView" />
+            app:layout_constraintStart_toStartOf="@+id/publisherTextView"
+            app:layout_constraintTop_toBottomOf="@+id/publisherTextView"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@string/description" />
 
         <TextView
             android:id="@+id/linkTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_16"
             android:text="@string/link"
             android:textColor="@color/royal_blue"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/text_book_link_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/descriptionTextView"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/descriptionTextView" />
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,9 +32,6 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        fun getDatabase(): AppDatabase? {
-            return INSTANCE
-        }
     }
 }
 

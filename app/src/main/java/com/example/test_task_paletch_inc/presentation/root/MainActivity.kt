@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
 
-        //(applicationContext as AppTestTaskPaletchInc).getComponent().inject(this)
-        //AppTestTaskPaletchInc.appComponent.inject(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {

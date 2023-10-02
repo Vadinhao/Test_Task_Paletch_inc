@@ -1,5 +1,6 @@
 package com.example.test_task_paletch_inc.presentation.screens.books.recycler
 
+import android.content.Context
 import android.util.Log
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
@@ -7,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.test_task_paletch_inc.constants.Constants
 import com.example.test_task_paletch_inc.domain.models.Book
 
-class BooksAdapter (
-    private val booksData : LiveData<List<Book>>,
+class BooksAdapter(
+    private val booksData: LiveData<List<Book>>,
+    private val context: Context,
     private val onItemClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<BooksHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksHolder {
@@ -17,7 +19,7 @@ class BooksAdapter (
 
     override fun onBindViewHolder(holder: BooksHolder, position: Int) {
         if (booksData.isInitialized)
-            holder.bind(booksData.value!![position])
+            holder.bind(booksData.value!![position], context)
         else
             Log.e("MyTag", "LifeData book not initialized")
     }

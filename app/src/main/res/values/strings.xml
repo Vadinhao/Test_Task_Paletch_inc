@@ -6,8 +6,10 @@
     <string name="author">Author</string>
     <string name="publisher">Publisher</string>
     <string name="description">Description</string>
+    <string name="book_name">Book</string>
     <string name="link">Link to buy the book</string>
     <string name="title_activity_web">WebActivity</string>
     <string name="no_data">Sorry, there is no data, check it later</string>
+    <string name="no_internet_connection">Sorry, there is no internet connection, check your connection and try again</string>
     <string name="ny_times">New York Times</string>
 </resources>

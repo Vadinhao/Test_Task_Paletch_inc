@@ -4,10 +4,10 @@ import com.example.test_task_paletch_inc.data.database.entity.DbBooks
 import com.example.test_task_paletch_inc.domain.models.Book
 
 object BookDbMapper {
-    fun toDbEntity(book: Book, id: Int, category: String) = DbBooks(
+    fun toDbEntity(book: Book, id: Int) = DbBooks(
         id = id,
         name = book.name,
-        category = category,
+        category = book.category,
         description = book.description,
         author = book.author,
         publisher = book.publisher,

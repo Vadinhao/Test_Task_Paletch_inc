@@ -10,10 +10,10 @@ import com.example.test_task_paletch_inc.data.network.NYTimesApiStatus
 import com.example.test_task_paletch_inc.data.network.NYTimesApiStatus.*
 
 @BindingAdapter("imageUrl")
-fun bindImage(imgView: ImageView, imgUrl: String?){
-    imgUrl?.let{
+fun bindImage(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-        imgView.load(imgUri){
+        imgView.load(imgUri) {
             placeholder(R.drawable.loading_animation)
             error(R.drawable.ic_broken_image)
         }
@@ -21,21 +21,25 @@ fun bindImage(imgView: ImageView, imgUrl: String?){
 }
 
 @BindingAdapter("apiStatus")
-fun bindStatus(statusImageView: ImageView,
-               status: NYTimesApiStatus?) {
+fun bindStatus(
+    statusImageView: ImageView,
+    status: NYTimesApiStatus?
+) {
     when (status) {
         LOADING -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
+
         ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
+
         DONE -> {
             statusImageView.visibility = View.GONE
         }
 
-        null -> { }
+        null -> {}
     }
 }

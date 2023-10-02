@@ -14,7 +14,7 @@ class AppModule(private val context: Context) {
     }
 
     @Provides
-    fun provideAppDatabase(context: Context) : AppDatabase {
+    fun provideAppDatabase(context: Context): AppDatabase {
         return AppDatabase.getDatabase(context)
     }
 

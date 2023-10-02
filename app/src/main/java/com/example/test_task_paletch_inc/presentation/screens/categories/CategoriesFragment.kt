@@ -1,5 +1,6 @@
 package com.example.test_task_paletch_inc.presentation.screens.categories
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.test_task_paletch_inc.R
-import com.example.test_task_paletch_inc.data.database.AppDatabase
 import com.example.test_task_paletch_inc.databinding.FragmentCategoriesBinding
 import com.example.test_task_paletch_inc.presentation.screens.SharedViewModel
 import com.example.test_task_paletch_inc.presentation.screens.categories.recycler.CategoriesAdapter
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 
 class CategoriesFragment : Fragment() {
 
@@ -23,6 +21,10 @@ class CategoriesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val sharedViewModel: SharedViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +37,6 @@ class CategoriesFragment : Fragment() {
             viewModel = sharedViewModel
         }
         setUpActionBar()
-        initDataBase()
         return binding.root
     }
 
@@ -64,17 +65,15 @@ class CategoriesFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setUpObserver() {
         sharedViewModel.dataCategories.observe(viewLifecycleOwner, Observer {
             binding.recyclerView.adapter?.notifyDataSetChanged()
         })
     }
 
-    private fun initDataBase(){
-        val context = this
-        MainScope().launch {
-            AppDatabase.getDatabase(context.requireContext())
-        }
+    override fun onPause() {
+        super.onPause()
+        binding.loadingImageView.visibility = View.GONE
     }
-
 }

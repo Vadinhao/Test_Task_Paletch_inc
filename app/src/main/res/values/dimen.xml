@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name = "margin_0">0dp</dimen>
-    <dimen name = "margin_2">2dp</dimen>
-    <dimen name = "margin_4">4dp</dimen>
-    <dimen name = "margin_6">6dp</dimen>
-    <dimen name = "margin_8">8dp</dimen>
-    <dimen name = "margin_16">16dp</dimen>
+    <dimen name="margin_0">0dp</dimen>
+    <dimen name="margin_1">1dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_6">6dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
 
-    <dimen name = "load_image_size">250dp</dimen>
-    <dimen name = "book_image_size">130dp</dimen>
-    <dimen name = "book_element_height">250dp</dimen>
-    <dimen name = "category_element_height">100dp</dimen>
+    <dimen name="load_image_size">250dp</dimen>
+    <dimen name="book_image_size">140dp</dimen>
+    <dimen name="book_element_height">250dp</dimen>
+    <dimen name="category_element_height">100dp</dimen>
 
-    <dimen name = "text_category_size">20sp</dimen>
-    <dimen name = "text_date_category_size">16sp</dimen>
+    <dimen name="text_category_size">20sp</dimen>
+    <dimen name="text_date_category_size">16sp</dimen>
+    <dimen name="text_warning_size">16sp</dimen>
+    <dimen name="text_book_name_size">20sp</dimen>
+    <dimen name="text_book_link_size">16sp</dimen>
 </resources>

@@ -9,6 +9,7 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.test_task_paletch_inc.R
+import com.example.test_task_paletch_inc.data.network.NYTimesApi
 import com.example.test_task_paletch_inc.databinding.FragmentWebBinding
 
 class WebFragment : Fragment() {
@@ -39,7 +40,7 @@ class WebFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setUpWebView()
@@ -55,7 +56,12 @@ class WebFragment : Fragment() {
         actionBar?.title = getString(R.string.ny_times)
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun setUpWebView() {
+        if (!NYTimesApi.checkForInternet(requireContext())) {
+            binding.webView.visibility = View.GONE
+            binding.textView.visibility = View.VISIBLE
+        }
         binding.webView.settings.javaScriptEnabled = true;
         binding.webView.webViewClient = WebViewClient()
         binding.webView.loadUrl(url)

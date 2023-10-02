@@ -10,10 +10,10 @@ import com.example.test_task_paletch_inc.data.database.entity.DbCategories
 interface CategoriesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(categories: List<DbCategories>)
+    suspend fun insertAllCategories(categories: List<DbCategories>)
 
     @Query("SELECT * FROM categories")
-    suspend fun getCategories(): List<DbCategories>
+    suspend fun getAllCategories(): List<DbCategories>
 
     @Query("DELETE FROM categories")
     suspend fun removeAllCategories()

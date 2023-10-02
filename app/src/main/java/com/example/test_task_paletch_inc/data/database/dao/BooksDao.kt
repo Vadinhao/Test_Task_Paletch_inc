@@ -10,11 +10,11 @@ import com.example.test_task_paletch_inc.data.database.entity.DbBooks
 interface BooksDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(books: List<DbBooks>)
+    suspend fun insertAllBooks(books: List<DbBooks>)
 
-    @Query("SELECT * FROM books WHERE category = :categoryName")
-    suspend fun getBooksForCategory(categoryName: String): List<DbBooks>
+    @Query("SELECT * FROM books")
+    suspend fun getAllBooks(): List<DbBooks>
 
     @Query("DELETE FROM books")
-    suspend fun removeBooks()
+    suspend fun removeAllBooks()
 }

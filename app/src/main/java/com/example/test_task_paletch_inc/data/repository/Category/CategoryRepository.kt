@@ -6,5 +6,5 @@ interface CategoryRepository {
 
     suspend fun getAllCategoriesFromDB(): List<Category>
     suspend fun insertAllCategoryIntoDB(categories: List<Category>)
-    suspend fun getCategoriesAllFromNetwork(apiKey: String): List<Category>
+    suspend fun getAllCategoriesFromNetwork(apiKey: String): List<Category>
 }
